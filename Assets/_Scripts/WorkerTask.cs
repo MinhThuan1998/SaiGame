@@ -12,19 +12,26 @@ public class WorkerTask : SaiBehaviour
     [SerializeField] protected float buildingDistance = 0;
     [SerializeField] protected float buildDisLimit = 0.7f;
 
+    [SerializeField] private Transform doorTarget;
 
+    
     protected override void FixedUpdate()
     {
+       
         base.FixedUpdate();
 
         if (this.GetBuilding()) this.GettingReadyForWork();
         else this.FindBuilding();
 
-        if (workerCtrl.workerTasks.readyForTask) this.Working();
-
+        if (workerCtrl.workerTasks.readyForTask) {
+            //this.Working();
+            
+            
+        } 
+        
 
     }
-
+    
     protected override void OnDisable()
     {
         base.OnDisable();
@@ -41,8 +48,9 @@ public class WorkerTask : SaiBehaviour
             this.GotoBuilding();
             return;
         }
-
+       
         this.workerCtrl.workerTasks.readyForTask = true;
+        
         this.GoIntoBuilding();
     }
 
@@ -50,6 +58,7 @@ public class WorkerTask : SaiBehaviour
     {
         base.LoadComponents();
         this.LoadWorkerCtrl();
+       
        
         
     }
@@ -68,7 +77,9 @@ public class WorkerTask : SaiBehaviour
         if (this.IsAtBuilding()) this.GoIntoBuilding();
         else this.GotoBuilding();
 
-        if (this.inHouse) this.Working();
+        if (this.inHouse) {
+            //this.Working();
+        } 
     }
     protected virtual void FindBuilding()
     {
@@ -115,12 +126,14 @@ public class WorkerTask : SaiBehaviour
     }
     public virtual void GotoBuilding()
     {
-        BuildingCtrl buildingCtrl = this.GetBuilding();
-        this.workerCtrl.workerMovement.SetTarget(buildingCtrl.door);
-        
-        
-       
-       
+        /*BuildingCtrl buildingCtrl = this.GetBuilding();
+        this.workerCtrl.workerMovement.SetTarget(buildingCtrl.door);*/
+        this.workerCtrl.workerMovement.SetTarget(doorTarget);
+
+
+
+
+
     }
 
     public virtual void GoOutBuilding()

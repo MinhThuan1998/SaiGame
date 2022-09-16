@@ -50,16 +50,18 @@ public class WorkerMovement : SaiBehaviour
     {
        
         this.target = trans;
+        
 
-       /* if (this.target == null)
-        {
-            this.workerCtrl.navMeshAgent.enabled = false;
-        }
-        else
-        {
-            this.workerCtrl.navMeshAgent.enabled = true;
-            this.IsClose2Target();
-        }*/
+
+        /* if (this.target == null)
+         {
+             this.workerCtrl.navMeshAgent.enabled = false;
+         }
+         else
+         {
+             this.workerCtrl.navMeshAgent.enabled = true;
+             this.IsClose2Target();
+         }*/
 
 
 
