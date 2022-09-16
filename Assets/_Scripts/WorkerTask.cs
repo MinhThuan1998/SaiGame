@@ -5,9 +5,9 @@ using UnityEngine;
 public class WorkerTask : SaiBehaviour
 {
     public WorkerCtrl workerCtrl;
-    
-    
-   
+    [SerializeField] private Transform doorTarget;
+
+
     [SerializeField] protected bool inHouse = false;
     [SerializeField] protected float buildingDistance = 0;
     [SerializeField] protected float buildDisLimit = 0.7f;
@@ -20,7 +20,10 @@ public class WorkerTask : SaiBehaviour
         if (this.GetBuilding()) this.GettingReadyForWork();
         else this.FindBuilding();
 
-        if (workerCtrl.workerTasks.readyForTask) this.Working();
+        if (workerCtrl.workerTasks.readyForTask) {
+            //this.Working();
+        }
+        
 
 
     }
@@ -117,10 +120,10 @@ public class WorkerTask : SaiBehaviour
     {
         BuildingCtrl buildingCtrl = this.GetBuilding();
         this.workerCtrl.workerMovement.SetTarget(buildingCtrl.door);
-        
-        
-       
-       
+        this.workerCtrl.workerMovement.SetTarget(doorTarget);
+
+
+
     }
 
     public virtual void GoOutBuilding()
