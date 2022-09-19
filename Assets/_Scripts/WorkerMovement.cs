@@ -14,7 +14,7 @@ public class WorkerMovement : SaiBehaviour
     [SerializeField] protected bool isWorking = false;
 
     [SerializeField] protected float walkLimit = 0.7f;
-    [SerializeField] protected float targetDistance = 0f;
+     public float targetDistance = 0f;
 
     protected override void LoadComponents()
     {
