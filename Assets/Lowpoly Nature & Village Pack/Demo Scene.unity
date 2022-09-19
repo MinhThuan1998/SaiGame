@@ -215,6 +215,7 @@ Transform:
   m_Children:
   - {fileID: 654293372}
   - {fileID: 518083596}
+  - {fileID: 1047242100}
   m_Father: {fileID: 546536407}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -399,9 +400,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   workerCtrl: {fileID: 546536409}
-  doorTarget: {fileID: 0}
+  doorTarget: {fileID: 1047242100}
   inHouse: 0
-  buildingDistance: 0
+  buildingDistance: 0.8
   buildDisLimit: 0.7
 --- !u!1 &546536404
 GameObject:
@@ -439,7 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   workerCtrl: {fileID: 546536409}
-  target: {fileID: 0}
+  target: {fileID: 1047242100}
   navMeshAgent: {fileID: 546536406}
   animator: {fileID: 1545118014}
   isWalking: 0
@@ -550,7 +551,7 @@ MonoBehaviour:
   workerCtrl: {fileID: 546536409}
   doorTarget: {fileID: 1047242100}
   inHouse: 0
-  buildingDistance: 0
+  buildingDistance: 0.8
   buildDisLimit: 0.7
 --- !u!114 &546536412
 MonoBehaviour:
@@ -559,7 +560,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546536404}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 021c53eba1c41f6489f613dd0e12ef99, type: 3}
   m_Name: 
@@ -592,7 +593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2942b9e5d7b26a048b95710466265044, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.059999466
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2942b9e5d7b26a048b95710466265044, type: 3}
       propertyPath: m_LocalPosition.z
@@ -604,15 +605,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2942b9e5d7b26a048b95710466265044, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2942b9e5d7b26a048b95710466265044, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2942b9e5d7b26a048b95710466265044, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2942b9e5d7b26a048b95710466265044, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -736,9 +737,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   workerCtrl: {fileID: 546536409}
-  doorTarget: {fileID: 0}
+  doorTarget: {fileID: 1047242100}
   inHouse: 1
-  buildingDistance: 0
+  buildingDistance: 0.8
   buildDisLimit: 0.7
 --- !u!1 &705507993
 GameObject:
@@ -1189,13 +1190,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047242099}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.7, y: 4.5817604, z: -14.1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -36.308655, y: 0.1317606, z: 15.374323}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 251677293}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1047535050
 PrefabInstance:
