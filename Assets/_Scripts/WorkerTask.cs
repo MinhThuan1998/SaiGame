@@ -9,7 +9,7 @@ public class WorkerTask : SaiBehaviour
 
 
     [SerializeField] protected bool inHouse = false;
-    [SerializeField] protected float buildingDistance = 0.8f;
+    [SerializeField] protected float buildingDistance = 0f;
     [SerializeField] protected float buildDisLimit = 0.7f;
 
     WorkerMovement workerMovement;
@@ -132,7 +132,7 @@ public class WorkerTask : SaiBehaviour
     }
     public virtual bool IsAtBuilding()
     {
-        return this.buildingDistance < this.buildDisLimit;
+        return this.BuildingDistance() < this.buildDisLimit;
         
     }
     public virtual void GotoBuilding()
@@ -150,5 +150,10 @@ public class WorkerTask : SaiBehaviour
         this.inHouse = false;
         this.workerCtrl.workerModel.gameObject.SetActive(true);
     }
-    
+    protected virtual float BuildingDistance()
+    {
+        BuildingCtrl buildingCtrl = this.GetBuilding();
+        this.buildingDistance = Vector3.Distance(transform.position, doorTarget.transform.position);
+        return this.buildingDistance;
+    }
 }

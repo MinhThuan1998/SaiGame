@@ -550,7 +550,7 @@ MonoBehaviour:
   workerCtrl: {fileID: 546536409}
   doorTarget: {fileID: 1768731716}
   inHouse: 0
-  buildingDistance: 0.8
+  buildingDistance: 0
   buildDisLimit: 0.7
 --- !u!114 &546536412
 MonoBehaviour:
