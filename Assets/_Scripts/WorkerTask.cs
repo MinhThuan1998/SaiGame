@@ -10,7 +10,7 @@ public class WorkerTask : SaiBehaviour
 
     [SerializeField] protected bool inHouse = false;
     [SerializeField] protected float buildingDistance = 0f;
-    [SerializeField] protected float buildDisLimit = 0.7f;
+    [SerializeField] protected float buildDisLimit = 3f;
 
     WorkerMovement workerMovement;
 

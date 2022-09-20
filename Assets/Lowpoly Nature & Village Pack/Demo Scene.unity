@@ -551,7 +551,7 @@ MonoBehaviour:
   doorTarget: {fileID: 1768731716}
   inHouse: 0
   buildingDistance: 0
-  buildDisLimit: 0.7
+  buildDisLimit: 3
 --- !u!114 &546536412
 MonoBehaviour:
   m_ObjectHideFlags: 0
