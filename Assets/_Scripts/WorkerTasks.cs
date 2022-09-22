@@ -10,6 +10,7 @@ public class WorkerTasks : SaiBehaviour
     public bool readyForTask = false;
     public WorkerTask taskWorking;
     public WorkerTask taskGoHome;
+    [SerializeField] protected List<TaskType> tasks;
     //public TaskWorking taskWorking;
     //public Transform taskTarget;
     //public BuildingCtrl taskBuildingCtrl;
@@ -52,7 +53,23 @@ public class WorkerTasks : SaiBehaviour
         Debug.Log(transform.name + ": LoadTasks", gameObject);
     }
 
-        
+    public virtual void TaskAdd(TaskType taskType)
+    {
+        TaskType currentTask = this.TaskCurrent();
+        if (taskType == currentTask) return;
+        this.tasks.Add(taskType);
+    }
+
+    public virtual void TaskCurrentDone()
+    {
+        this.tasks.RemoveAt(this.tasks.Count - 1);
+    }
+    public virtual TaskType TaskCurrent()
+    {
+        if (this.tasks.Count <= 0) return TaskType.none;
+        return this.tasks[this.tasks.Count - 1];
+    }
+
 
 
 
