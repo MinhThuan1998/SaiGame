@@ -12,13 +12,14 @@ public class WorkerTask : SaiBehaviour
     [SerializeField] protected float buildingDistance = 0f;
     [SerializeField] protected float buildDisLimit = 3f;
 
-    WorkerMovement workerMovement;
 
+    WorkerMovement workerMovement;
+    public BuildingTask buildingTask;
     protected override void FixedUpdate()
     {
        
         base.FixedUpdate();
-        //buildingDistance = Vector3.Distance(transform.position, doorTarget.transform.position);
+      
         if (this.GetBuilding() == null) {
             this.GettingReadyForWork();
            
@@ -27,7 +28,7 @@ public class WorkerTask : SaiBehaviour
         else this.FindBuilding();
 
         if (workerCtrl.workerTasks.readyForTask) {
-            //this.Working();
+            this.Working();
 
         }
         
@@ -102,11 +103,14 @@ public class WorkerTask : SaiBehaviour
     protected virtual void Working()
     {
         this.GetBuilding().buildingTask.DoingTask(this.workerCtrl);
+       
+        
     }
     protected virtual BuildingCtrl GetBuilding()
     {
-      
+        
         return null;
+        
     }
 
     protected virtual void AssignBuilding(BuildingCtrl buildingCtrl)

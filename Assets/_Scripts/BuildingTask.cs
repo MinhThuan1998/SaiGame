@@ -29,7 +29,7 @@ public class BuildingTask : SaiBehaviour
     }
     public virtual void DoingTask(WorkerCtrl workerCtrl)
     {
-
+        //Debug.Log("DoingTaskkkkkkkkkkk");
     }
     
 }

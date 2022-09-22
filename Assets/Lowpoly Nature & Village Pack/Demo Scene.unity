@@ -399,10 +399,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   workerCtrl: {fileID: 546536409}
-  doorTarget: {fileID: 0}
+  doorTarget: {fileID: 1768731716}
   inHouse: 0
-  buildingDistance: 0.8
-  buildDisLimit: 0.7
+  buildingDistance: 0
+  buildDisLimit: 3
+  buildingTask: {fileID: 0}
 --- !u!1 &546536404
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,6 +553,7 @@ MonoBehaviour:
   inHouse: 0
   buildingDistance: 0
   buildDisLimit: 3
+  buildingTask: {fileID: 0}
 --- !u!114 &546536412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,7 +567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   workerCtrl: {fileID: 546536409}
-  isNightTime: 0
+  isNightTime: 1
   inHouse: 0
   readyForTask: 0
   taskWorking: {fileID: 654293373}
@@ -736,10 +738,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   workerCtrl: {fileID: 546536409}
-  doorTarget: {fileID: 0}
-  inHouse: 1
-  buildingDistance: 0.8
-  buildDisLimit: 0.7
+  doorTarget: {fileID: 1768731716}
+  inHouse: 0
+  buildingDistance: 0
+  buildDisLimit: 3
+  buildingTask: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,6 +980,10 @@ PrefabInstance:
     - target: {fileID: 450482702846989491, guid: 59459ed0536bf7147826875a3c0caf7e, type: 3}
       propertyPath: m_Name
       value: HomeSmall
+      objectReference: {fileID: 0}
+    - target: {fileID: 450482702846989491, guid: 59459ed0536bf7147826875a3c0caf7e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 450482702846989485, guid: 59459ed0536bf7147826875a3c0caf7e, type: 3}
