@@ -33,6 +33,7 @@ public class ResourceManager : MonoBehaviour
 
             this.resources.Add(res);
         }
+        Debug.Log(res.name);
         return res;
     }
 }

@@ -8,15 +8,27 @@ public class ResGenerator : Warehouse
     [SerializeField] protected List<Resource> resCreate;
     [SerializeField] protected List<Resource> resRequire;
     [SerializeField] protected float createTimer = 0f;
-    [SerializeField] protected float crreateDelay = 2f;
+    [SerializeField] protected float createDelay = 2f;
+    [SerializeField] protected int number = 1;
 
+    public ResourceName resourceName;
+
+    private void Start()
+    {
+        this.Generating();
+    }
     protected override void FixedUpdate()
     {
         
         this.Creating();
+       
     }
 
+    protected virtual void Generating()
+    {
 
+        ResourceManager.instance.AddResource(ResourceName.gold, this.number);
+    }
     protected override void LoadComponents()
     {
         this.LoadHolders();
@@ -26,7 +38,7 @@ public class ResGenerator : Warehouse
     protected virtual void Creating()
     {
         this.createTimer += Time.fixedDeltaTime;
-        if (this.createTimer < this.crreateDelay) return;
+        if (this.createTimer < this.createDelay) return;
         this.createTimer = 0;
 
         foreach(Resource res in this.resCreate)
