@@ -11,7 +11,8 @@ public class ForestHutTask : BuildingTask
     [SerializeField] protected float treeDistance = 7f;
     [SerializeField] protected List<GameObject> trees;
     [SerializeField] protected int treeMax = 7;
-
+    [SerializeField] protected float workingSpeed = 2;
+    
 
     protected override void LoadComponents()
     {
@@ -79,11 +80,25 @@ public class ForestHutTask : BuildingTask
                 workerCtrl.workerTasks.TaskAdd(TaskType.goToWorkStation);
             }
         }
+    }
 
+    protected virtual void ChopTree(WorkerCtrl workerCtrl)
+    {
+        if (workerCtrl.workerMovement.isWorking) return;
+        StartCoroutine(Chopping(workerCtrl, workerCtrl.workerTasks.taskTarget));
 
 
     }
+    private IEnumerator Chopping(WorkerCtrl workerCtrl, Transform tree)
+    {
+        workerCtrl.workerMovement.isWorking = true;
+        yield return new WaitForSeconds(this.workingSpeed);
+        TreeCtrl treeCtrl = tree.GetComponent<TreeCtrl>();
+        //treeCtrl.treeLevel.ShowLastBuild();
+        
+        
 
+    }
     protected virtual void Planning(WorkerCtrl workerCtrl)
     {
         if (this.NeedMoreTree()) workerCtrl.workerTasks.TaskAdd(TaskType.plantTree);

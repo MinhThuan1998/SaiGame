@@ -10,6 +10,7 @@ public class WorkerTasks : SaiBehaviour
     public bool readyForTask = false;
     public WorkerTask taskWorking;
     public WorkerTask taskGoHome;
+    public Transform taskTarget;
     [SerializeField] protected List<TaskType> tasks;
     //public TaskWorking taskWorking;
     //public Transform taskTarget;

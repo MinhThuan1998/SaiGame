@@ -11,7 +11,7 @@ public class WorkerMovement : SaiBehaviour
     [SerializeField] protected Animator animator;
 
     [SerializeField] protected bool isWalking = false;
-    [SerializeField] protected bool isWorking = false;
+    public  bool isWorking = false;
 
     [SerializeField] protected float walkLimit = 0.7f;
      public float targetDistance = 0f;

@@ -1701,7 +1701,7 @@ MonoBehaviour:
   createTimer: 0
   createDelay: 2
   number: 1
-  resourceName: 1
+  resourceName: 0
 --- !u!4 &1768731716 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 450482702913090225, guid: 59459ed0536bf7147826875a3c0caf7e, type: 3}

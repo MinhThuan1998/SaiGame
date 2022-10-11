@@ -7,6 +7,7 @@ public class Workers : SaiBehaviour
     [SerializeField] protected List<Transform> workers;
     [SerializeField] protected int maxWorker = 1;
 
+
     protected override void LoadComponents()
     {
         this.LoadWorkers();
@@ -24,7 +25,7 @@ public class Workers : SaiBehaviour
 
 
     }
-
+   
     public virtual bool IsNeedWorker()
     {
         if (this.workers.Count >= this.maxWorker) return false;
