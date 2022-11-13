@@ -572,6 +572,7 @@ MonoBehaviour:
   readyForTask: 0
   taskWorking: {fileID: 654293373}
   taskGoHome: {fileID: 518083597}
+  taskTarget: {fileID: 0}
   tasks: 
 --- !u!4 &576152629 stripped
 Transform:
@@ -1060,6 +1061,8 @@ MonoBehaviour:
   buildingCtrl: {fileID: 936844858}
   taskTimer: 0
   taskDelay: 5
+  treeTimer: 0
+  treeTimetoStop: 10
 --- !u!208 &936844854
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1855,6 +1858,8 @@ MonoBehaviour:
   buildingCtrl: {fileID: 631505588}
   taskTimer: 0
   taskDelay: 5
+  treeTimer: 0
+  treeTimetoStop: 10
   plantTreeObj: {fileID: 59332387104433352, guid: 1eb22a710a0899043874e7e4245b457e, type: 3}
   treePrefabs:
   - {fileID: 684684767461524167, guid: b561352904e79f149a36582e017b8b82, type: 3}
@@ -1863,7 +1868,8 @@ MonoBehaviour:
   treeRange: 27
   treeDistance: 7
   trees: []
-  treeMax: 7
+  treeMax: 2
+  workingSpeed: 2
 --- !u!114 &1937973328 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 450482702846989485, guid: 59459ed0536bf7147826875a3c0caf7e, type: 3}

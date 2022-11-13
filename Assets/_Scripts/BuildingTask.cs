@@ -8,16 +8,25 @@ public class BuildingTask : SaiBehaviour
     [SerializeField] protected float taskTimer = 0;
     [SerializeField] protected float taskDelay = 5f;
 
+    [SerializeField] protected float treeTimer = 0;
+
+    [SerializeField] protected float treeTimetoStop = 10f;
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadBuildingCtrl();
+        
     }
 
     protected virtual void LoadBuildingCtrl()
     {
         if (this.buildingCtrl != null) return;
         this.buildingCtrl = GetComponent<BuildingCtrl>();
+    }
+    protected virtual void IsTimeToChop(){
+        this.treeTimer += Time.fixedDeltaTime;
+       
     }
 
     protected virtual bool IsTime2Work()

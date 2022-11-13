@@ -10,7 +10,7 @@ public class ForestHutTask : BuildingTask
     [SerializeField] protected float treeRange = 27f;
     [SerializeField] protected float treeDistance = 7f;
     [SerializeField] protected List<GameObject> trees;
-    [SerializeField] protected int treeMax = 7;
+    [SerializeField] protected int treeMax = 1;
     [SerializeField] protected float workingSpeed = 2;
     
 
@@ -101,8 +101,13 @@ public class ForestHutTask : BuildingTask
     }
     protected virtual void Planning(WorkerCtrl workerCtrl)
     {
-        if (this.NeedMoreTree()) workerCtrl.workerTasks.TaskAdd(TaskType.plantTree);
+        if (this.NeedMoreTree()) {
+            
+            workerCtrl.workerTasks.TaskAdd(TaskType.plantTree);
+        } 
     }
+
+   
     protected virtual bool NeedMoreTree()
     {
         return this.treeMax >= this.trees.Count;
@@ -115,6 +120,10 @@ public class ForestHutTask : BuildingTask
         treeObj.transform.rotation = trans.rotation;
         this.trees.Add(treeObj);
         TreeManager.instance.TreeAdd(treeObj);
+        if (this.treeMax == this.trees.Count)
+        {
+            IsTimeToChop();
+        }
     }
     protected virtual Transform GetPlantPlace()
     {
@@ -122,7 +131,6 @@ public class ForestHutTask : BuildingTask
         float dis = Vector3.Distance(transform.position, newTreePos);
         if (dis < this.treeDistance)
         {
-            Debug.Log("GetPlantPlace Destroy GameObject");
             return null;
         }
 
