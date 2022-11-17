@@ -8,9 +8,10 @@ public class BuildingTask : SaiBehaviour
     [SerializeField] protected float taskTimer = 0;
     [SerializeField] protected float taskDelay = 5f;
 
-    [SerializeField] protected float treeTimer = 0;
+    [SerializeField] protected float treeTimer = 20f;
+   
 
-    [SerializeField] protected float treeTimetoStop = 10f;
+   
 
     protected override void LoadComponents()
     {
@@ -19,16 +20,23 @@ public class BuildingTask : SaiBehaviour
         
     }
 
+   
+
     protected virtual void LoadBuildingCtrl()
     {
         if (this.buildingCtrl != null) return;
         this.buildingCtrl = GetComponent<BuildingCtrl>();
     }
-    protected virtual void IsTimeToChop(){
-        this.treeTimer += Time.fixedDeltaTime;
-       
+    protected virtual void IsTimeToChop() 
+    {
+        StartCoroutine(WaitoChop());
     }
 
+    IEnumerator WaitoChop()
+    {
+        yield return new WaitForSeconds(this.treeTimer);
+        Debug.Log("5s");
+    }
     protected virtual bool IsTime2Work()
     {
         this.taskTimer += Time.fixedDeltaTime;
