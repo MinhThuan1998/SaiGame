@@ -12,6 +12,8 @@ public class ForestHutTask : BuildingTask
     [SerializeField] protected List<GameObject> trees;
     [SerializeField] protected int treeMax = 1;
     [SerializeField] protected float workingSpeed = 2;
+
+   
     private WorkerCtrl workerCtrl;
 
     protected override void LoadComponents()
@@ -117,8 +119,9 @@ public class ForestHutTask : BuildingTask
         TreeManager.instance.TreeAdd(treeObj);
         if (this.treeMax == this.trees.Count)
         {
-            Debug.Log("I want to chop tree");
-            // Find mark position
+            //Debug.Log();
+           
+            
 
         }
     }

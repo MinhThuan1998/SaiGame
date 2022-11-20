@@ -60,9 +60,6 @@ public class WorkerMovement : SaiBehaviour
             this.workerCtrl.navMeshAgent.enabled = true;
             this.IsClose2Target();
         }*/
-
-
-
     }
     protected virtual void LoadWorkerCtrl()
     {
@@ -89,16 +86,13 @@ public class WorkerMovement : SaiBehaviour
         this.navMeshAgent.isStopped = false;
         this.navMeshAgent.SetDestination(this.target.position);
        
-
     }
-
     protected virtual void Animating()
     {
         this.animator.SetBool("isWalking", this.isWalking);
         this.animator.SetBool("isWorking", this.isWorking);
 
     }
-
     public virtual bool IsClose2Target()
     {
         if (this.target == null) return false;
@@ -109,9 +103,4 @@ public class WorkerMovement : SaiBehaviour
         this.targetDistance = Vector3.Distance(transform.position, targetPos);
         return this.targetDistance < this.walkLimit;
     }
-
-
-
-
-
 }
