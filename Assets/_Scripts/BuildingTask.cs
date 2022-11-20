@@ -27,16 +27,9 @@ public class BuildingTask : SaiBehaviour
         if (this.buildingCtrl != null) return;
         this.buildingCtrl = GetComponent<BuildingCtrl>();
     }
-    protected virtual void IsTimeToChop() 
-    {
-        StartCoroutine(WaitoChop());
-    }
+   
 
-    IEnumerator WaitoChop()
-    {
-        yield return new WaitForSeconds(this.treeTimer);
-        Debug.Log("5s");
-    }
+
     protected virtual bool IsTime2Work()
     {
         this.taskTimer += Time.fixedDeltaTime;

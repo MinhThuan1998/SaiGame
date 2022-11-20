@@ -1062,7 +1062,6 @@ MonoBehaviour:
   taskTimer: 0
   taskDelay: 5
   treeTimer: 0
-  treeTimetoStop: 10
 --- !u!208 &936844854
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1859,7 +1858,6 @@ MonoBehaviour:
   taskTimer: 0
   taskDelay: 5
   treeTimer: 0
-  treeTimetoStop: 10
   plantTreeObj: {fileID: 59332387104433352, guid: 1eb22a710a0899043874e7e4245b457e, type: 3}
   treePrefabs:
   - {fileID: 684684767461524167, guid: b561352904e79f149a36582e017b8b82, type: 3}

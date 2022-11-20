@@ -12,7 +12,7 @@ public class ForestHutTask : BuildingTask
     [SerializeField] protected List<GameObject> trees;
     [SerializeField] protected int treeMax = 1;
     [SerializeField] protected float workingSpeed = 2;
-    
+    private WorkerCtrl workerCtrl;
 
     protected override void LoadComponents()
     {
@@ -47,7 +47,7 @@ public class ForestHutTask : BuildingTask
                 this.PlantTree(workerCtrl);
                 break;
             case TaskType.chopTree:
-                //this.ChopTree(workerCtrl);
+                this.ChopTree(workerCtrl);
                 break;
             case TaskType.goToWorkStation:
                 //this.BackToWorkStation(workerCtrl);
@@ -86,8 +86,6 @@ public class ForestHutTask : BuildingTask
     {
         if (workerCtrl.workerMovement.isWorking) return;
         StartCoroutine(Chopping(workerCtrl, workerCtrl.workerTasks.taskTarget));
-
-
     }
     private IEnumerator Chopping(WorkerCtrl workerCtrl, Transform tree)
     {
@@ -95,9 +93,6 @@ public class ForestHutTask : BuildingTask
         yield return new WaitForSeconds(this.workingSpeed);
         TreeCtrl treeCtrl = tree.GetComponent<TreeCtrl>();
         //treeCtrl.treeLevel.ShowLastBuild();
-        
-        
-
     }
     protected virtual void Planning(WorkerCtrl workerCtrl)
     {
@@ -122,7 +117,9 @@ public class ForestHutTask : BuildingTask
         TreeManager.instance.TreeAdd(treeObj);
         if (this.treeMax == this.trees.Count)
         {
-            IsTimeToChop();
+            Debug.Log("I want to chop tree");
+            // Find mark position
+
         }
     }
     protected virtual Transform GetPlantPlace()
