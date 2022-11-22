@@ -5,16 +5,15 @@ using UnityEngine.AI;
 public class WorkerMovement : SaiBehaviour
 {
     public WorkerCtrl workerCtrl;
-  
     [SerializeField] protected Transform target;
     [SerializeField] protected NavMeshAgent navMeshAgent;
     [SerializeField] protected Animator animator;
 
     [SerializeField] protected bool isWalking = false;
-    public  bool isWorking = false;
+    public bool isWorking = false;
 
     [SerializeField] protected float walkLimit = 0.7f;
-     public float targetDistance = 0f;
+    public float targetDistance = 0f;
 
     protected override void LoadComponents()
     {
@@ -30,6 +29,8 @@ public class WorkerMovement : SaiBehaviour
         this.Animating();
         
     }
+
+   
 
     protected virtual void LoadAgent()
     {

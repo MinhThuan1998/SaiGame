@@ -8,7 +8,7 @@ public class HouseTask : BuildingTask
     {
         if (!this.IsTime2Work()) return;
         string message = workerCtrl.name + " " + transform.name;
-        Debug.Log(message, gameObject);
+       
 
     }
 

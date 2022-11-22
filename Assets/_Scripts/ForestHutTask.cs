@@ -13,16 +13,18 @@ public class ForestHutTask : BuildingTask
     [SerializeField] protected int treeMax = 1;
     [SerializeField] protected float workingSpeed = 2;
 
-   
-    private WorkerCtrl workerCtrl;
+    public WorkerCtrl workerCtrl;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadObjects();
         this.LoadTrees();
+        
     }
+    
 
+    
     protected virtual void LoadObjects()
     {
         if (this.plantTreeObj != null) return;
@@ -67,6 +69,7 @@ public class ForestHutTask : BuildingTask
         if (target == null) target = this.GetPlantPlace();
         if (target == null) return;
 
+
         workerCtrl.workerTasks.taskWorking.GoOutBuilding();
         workerCtrl.workerMovement.SetTarget(target);
 
@@ -79,23 +82,28 @@ public class ForestHutTask : BuildingTask
             if (!this.NeedMoreTree())
             {
                 workerCtrl.workerTasks.TaskCurrentDone();
-                workerCtrl.workerTasks.TaskAdd(TaskType.goToWorkStation);
+                workerCtrl.workerTasks.TaskAdd(TaskType.chopTree);
             }
         }
+
+
     }
 
     protected virtual void ChopTree(WorkerCtrl workerCtrl)
     {
-        if (workerCtrl.workerMovement.isWorking) return;
-        StartCoroutine(Chopping(workerCtrl, workerCtrl.workerTasks.taskTarget));
+       
+        Transform target = workerCtrl.workerMovement.GetTarget();
+        Debug.Log(target);
+
+
     }
-    private IEnumerator Chopping(WorkerCtrl workerCtrl, Transform tree)
-    {
-        workerCtrl.workerMovement.isWorking = true;
-        yield return new WaitForSeconds(this.workingSpeed);
-        TreeCtrl treeCtrl = tree.GetComponent<TreeCtrl>();
-        //treeCtrl.treeLevel.ShowLastBuild();
-    }
+    //private IEnumerator Chopping(WorkerCtrl workerCtrl, Transform tree)
+    //{
+    //    workerCtrl.workerMovement.isWorking = true;
+    //    yield return new WaitForSeconds(this.workingSpeed);
+    //    TreeCtrl treeCtrl = tree.GetComponent<TreeCtrl>();
+    //    //treeCtrl.treeLevel.ShowLastBuild();
+    //}
     protected virtual void Planning(WorkerCtrl workerCtrl)
     {
         if (this.NeedMoreTree()) {
@@ -117,13 +125,6 @@ public class ForestHutTask : BuildingTask
         treeObj.transform.rotation = trans.rotation;
         this.trees.Add(treeObj);
         TreeManager.instance.TreeAdd(treeObj);
-        if (this.treeMax == this.trees.Count)
-        {
-            //Debug.Log();
-           
-            
-
-        }
     }
     protected virtual Transform GetPlantPlace()
     {
@@ -133,10 +134,8 @@ public class ForestHutTask : BuildingTask
         {
             return null;
         }
-
         GameObject treePlace = Instantiate(this.plantTreeObj);
         treePlace.transform.position = newTreePos;
-
         return treePlace.transform;
     }
     protected virtual GameObject GetTreePrefab()
@@ -150,8 +149,6 @@ public class ForestHutTask : BuildingTask
         position.x += Random.Range(this.treeRange * -1, this.treeRange);
         position.y = 0;
         position.z += Random.Range(this.treeRange * -1, this.treeRange);
-
         return position;
     }
-
 }
