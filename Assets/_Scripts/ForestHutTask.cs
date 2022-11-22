@@ -13,8 +13,6 @@ public class ForestHutTask : BuildingTask
     [SerializeField] protected int treeMax = 1;
     [SerializeField] protected float workingSpeed = 2;
 
-    public WorkerCtrl workerCtrl;
-
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -92,18 +90,19 @@ public class ForestHutTask : BuildingTask
     protected virtual void ChopTree(WorkerCtrl workerCtrl)
     {
        
-        Transform target = workerCtrl.workerMovement.GetTarget();
-        Debug.Log(target);
+        
+        if (workerCtrl.workerMovement.isWorking) return;
+        StartCoroutine(Chopping(workerCtrl, workerCtrl.workerTasks.taskTarget));
 
 
     }
-    //private IEnumerator Chopping(WorkerCtrl workerCtrl, Transform tree)
-    //{
-    //    workerCtrl.workerMovement.isWorking = true;
-    //    yield return new WaitForSeconds(this.workingSpeed);
-    //    TreeCtrl treeCtrl = tree.GetComponent<TreeCtrl>();
-    //    //treeCtrl.treeLevel.ShowLastBuild();
-    //}
+    private IEnumerator Chopping(WorkerCtrl workerCtrl, Transform tree)
+    {
+        workerCtrl.workerMovement.isWorking = true;
+        yield return new WaitForSeconds(this.workingSpeed);
+        TreeCtrl treeCtrl = tree.GetComponent<TreeCtrl>();
+        //treeCtrl.treeLevel.ShowLastBuild();
+    }
     protected virtual void Planning(WorkerCtrl workerCtrl)
     {
         if (this.NeedMoreTree()) {
