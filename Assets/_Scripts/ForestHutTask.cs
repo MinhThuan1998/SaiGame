@@ -63,11 +63,8 @@ public class ForestHutTask : BuildingTask
     protected virtual void PlantTree(WorkerCtrl workerCtrl)
     {
         Transform target = workerCtrl.workerMovement.GetTarget();
-
         if (target == null) target = this.GetPlantPlace();
         if (target == null) return;
-
-
         workerCtrl.workerTasks.taskWorking.GoOutBuilding();
         workerCtrl.workerMovement.SetTarget(target);
 
@@ -76,24 +73,21 @@ public class ForestHutTask : BuildingTask
             workerCtrl.workerMovement.SetTarget(null);
             Destroy(target.gameObject);//TODO: not done yet
             this.Planting(workerCtrl.transform);
-
             if (!this.NeedMoreTree())
             {
                 workerCtrl.workerTasks.TaskCurrentDone();
                 workerCtrl.workerTasks.TaskAdd(TaskType.chopTree);
             }
         }
-
-
     }
-
     protected virtual void ChopTree(WorkerCtrl workerCtrl)
     {
-       
-        
-        if (workerCtrl.workerMovement.isWorking) return;
-        StartCoroutine(Chopping(workerCtrl, workerCtrl.workerTasks.taskTarget));
-
+        //if (workerCtrl.workerMovement.isWorking) return;
+        //StartCoroutine(Chopping(workerCtrl, workerCtrl.workerTasks.taskTarget));
+        //Transform target = workerCtrl.workerMovement.GetTarget();
+        //workerCtrl.workerMovement.SetTarget(); 
+        //Debug.Log(trees);
+        FindNearestTree(workerCtrl);
 
     }
     private IEnumerator Chopping(WorkerCtrl workerCtrl, Transform tree)
@@ -102,6 +96,15 @@ public class ForestHutTask : BuildingTask
         yield return new WaitForSeconds(this.workingSpeed);
         TreeCtrl treeCtrl = tree.GetComponent<TreeCtrl>();
         //treeCtrl.treeLevel.ShowLastBuild();
+    }
+
+    protected virtual void FindNearestTree(WorkerCtrl workerCtrl)
+    {
+        foreach(GameObject tree in this.trees)
+        {
+            if (tree == null) continue;
+            
+        }
     }
     protected virtual void Planning(WorkerCtrl workerCtrl)
     {

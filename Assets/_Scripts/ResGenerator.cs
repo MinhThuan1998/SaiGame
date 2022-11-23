@@ -10,6 +10,7 @@ public class ResGenerator : Warehouse
     [SerializeField] protected float createTimer = 0f;
     [SerializeField] protected float createDelay = 2f;
     [SerializeField] protected int number = 1;
+    public bool canCreate = true;
 
     public ResourceName resourceName;
 
@@ -67,4 +68,13 @@ public class ResGenerator : Warehouse
         return this.GetCreateDelay();
     }
 
+    public virtual bool IsAllResMax()
+    {
+        foreach (ResHolder resHolder in this.resHolders)
+        {
+            if (resHolder.IsMax() == false) return false;
+        }
+
+        return true;
+    }
 }

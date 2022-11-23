@@ -8,6 +8,7 @@ public class ResHolder : SaiBehaviour
     [SerializeField] protected float resCurrent = 0;
     [SerializeField] protected float resMax = Mathf.Infinity;
 
+
     protected override void LoadComponents()
     {
         this.LoadResName();
@@ -44,6 +45,9 @@ public class ResHolder : SaiBehaviour
         return this.resCurrent;
     }
 
-
+    public virtual bool IsMax()
+    {
+        return this.resCurrent >= this.resMax;
+    }
 
 }

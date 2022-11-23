@@ -11,7 +11,7 @@ public class TreeManager : SaiBehaviour
     {
         base.Awake();
         if (TreeManager.instance != null) {
-            Debug.LogError("Only 1 treemanager aloow");
+           
 
         }
         TreeManager.instance = this;
