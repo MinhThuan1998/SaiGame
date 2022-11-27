@@ -100,10 +100,14 @@ public class ForestHutTask : BuildingTask
 
     protected virtual void FindNearestTree(WorkerCtrl workerCtrl)
     {
-        foreach(GameObject tree in this.trees)
+        GameObject tree;
+        Transform target = workerCtrl.workerMovement.GetTarget();
+
+        for (int i = 0; i < this.trees.Count -1; i++)
         {
-            if (tree == null) continue;
-            
+            tree = this.trees[i];
+            workerCtrl.workerTasks.taskTarget = tree.transform;
+            workerCtrl.workerMovement.SetTarget(tree.transform);
         }
     }
     protected virtual void Planning(WorkerCtrl workerCtrl)
