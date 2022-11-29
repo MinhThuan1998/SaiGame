@@ -1707,6 +1707,7 @@ MonoBehaviour:
   createTimer: 0
   createDelay: 2
   number: 1
+  canCreate: 1
   resourceName: 0
 --- !u!4 &1768731716 stripped
 Transform:
@@ -1870,9 +1871,8 @@ MonoBehaviour:
   treeRange: 27
   treeDistance: 7
   trees: []
-  treeMax: 2
+  treeMax: 1
   workingSpeed: 2
-  workerCtrl: {fileID: 0}
 --- !u!114 &1937973328 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 450482702846989485, guid: 59459ed0536bf7147826875a3c0caf7e, type: 3}
@@ -2110,6 +2110,7 @@ MonoBehaviour:
   createTimer: 0
   createDelay: 2
   number: 1
+  canCreate: 1
   resourceName: 0
 --- !u!1001 &2114568704
 PrefabInstance:

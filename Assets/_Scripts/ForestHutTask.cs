@@ -12,6 +12,9 @@ public class ForestHutTask : BuildingTask
     [SerializeField] protected List<GameObject> trees;
     [SerializeField] protected int treeMax = 1;
     [SerializeField] protected float workingSpeed = 2;
+    [SerializeField] protected float distanceWoodcutter = 10f;
+
+
 
     protected override void LoadComponents()
     {
@@ -103,11 +106,20 @@ public class ForestHutTask : BuildingTask
         GameObject tree;
         Transform target = workerCtrl.workerMovement.GetTarget();
 
-        for (int i = 0; i < this.trees.Count -1; i++)
+        for (int i = 0; i < this.trees.Count; i++)
         {
-            tree = this.trees[i];
-            workerCtrl.workerTasks.taskTarget = tree.transform;
-            workerCtrl.workerMovement.SetTarget(tree.transform);
+            tree =  this.trees[i];
+            float distancetoTrees = (tree.transform.position - workerCtrl.transform.position).sqrMagnitude;
+            if (distancetoTrees < distanceWoodcutter)
+            {
+                target = tree.transform;
+                Debug.Log("DistancetoTree" + distancetoTrees);
+                workerCtrl.workerTasks.taskTarget = target;
+                workerCtrl.workerMovement.SetTarget(target);
+            }
+            
+            
+           
         }
     }
     protected virtual void Planning(WorkerCtrl workerCtrl)
