@@ -11,9 +11,10 @@ public class ForestHutTask : BuildingTask
     [SerializeField] protected float treeDistance = 7f;
     [SerializeField] protected List<GameObject> trees;
     [SerializeField] protected int treeMax = 1;
-    [SerializeField] protected float workingSpeed = 2;
-    [SerializeField] protected float distanceWoodcutter = 10f;
-
+    [SerializeField] protected float workingSpeed = 10;
+    [SerializeField] protected float distanceWoodcutter = 3f;
+    [SerializeField] protected GameObject waterPond;
+    [SerializeField] protected bool relaxTime = false;
 
 
     protected override void LoadComponents()
@@ -23,8 +24,6 @@ public class ForestHutTask : BuildingTask
         this.LoadTrees();
         
     }
-    
-
     
     protected virtual void LoadObjects()
     {
@@ -90,7 +89,7 @@ public class ForestHutTask : BuildingTask
         //Transform target = workerCtrl.workerMovement.GetTarget();
         //workerCtrl.workerMovement.SetTarget(); 
         //Debug.Log(trees);
-        FindNearestTree(workerCtrl);
+        FindTreeByStep(workerCtrl);
 
     }
     private IEnumerator Chopping(WorkerCtrl workerCtrl, Transform tree)
@@ -101,27 +100,45 @@ public class ForestHutTask : BuildingTask
         //treeCtrl.treeLevel.ShowLastBuild();
     }
 
-    protected virtual void FindNearestTree(WorkerCtrl workerCtrl)
+    protected virtual void FindTreeByStep(WorkerCtrl workerCtrl)
     {
-        GameObject tree;
-        Transform target = workerCtrl.workerMovement.GetTarget();
-
-        for (int i = 0; i < this.trees.Count; i++)
+        Relax(workerCtrl);
+        if (relaxTime == true)
         {
-            tree =  this.trees[i];
-            float distancetoTrees = (tree.transform.position - workerCtrl.transform.position).sqrMagnitude;
-            if (distancetoTrees < distanceWoodcutter)
-            {
-                target = tree.transform;
-                Debug.Log("DistancetoTree" + distancetoTrees);
-                workerCtrl.workerTasks.taskTarget = target;
-                workerCtrl.workerMovement.SetTarget(target);
-            }
-            
-            
-           
+            FindNearestTree(workerCtrl);
         }
     }
+    protected virtual void FindNearestTree(WorkerCtrl workerCtrl)
+    {
+        Debug.Log("Find Tree");
+
+        GameObject tree;
+        Transform target = workerCtrl.workerMovement.GetTarget();
+        for (int i = 0; i < this.trees.Count; i++)
+        {
+            tree = this.trees[i];
+            target = tree.transform;
+            workerCtrl.workerTasks.taskTarget = target;
+            workerCtrl.workerMovement.SetTarget(target);
+        }
+    }
+    IEnumerator AfterRelaxing()
+    {
+        yield return new WaitForSeconds(10);
+        relaxTime = true;
+    }
+    protected virtual void Relax(WorkerCtrl workerCtrl)
+    {
+        Transform target = workerCtrl.workerMovement.GetTarget();
+        target = waterPond.transform;
+        if (target == null) return;
+        workerCtrl.workerMovement.SetTarget(target);
+        StartCoroutine(AfterRelaxing());
+      
+        
+    }
+
+    
     protected virtual void Planning(WorkerCtrl workerCtrl)
     {
         if (this.NeedMoreTree()) {

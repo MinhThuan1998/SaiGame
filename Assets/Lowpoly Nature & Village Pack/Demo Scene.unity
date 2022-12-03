@@ -1872,7 +1872,10 @@ MonoBehaviour:
   treeDistance: 7
   trees: []
   treeMax: 1
-  workingSpeed: 2
+  workingSpeed: 1000
+  distanceWoodcutter: 10
+  waterPond: {fileID: 2082803236}
+  relaxTime: 0
 --- !u!114 &1937973328 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 450482702846989485, guid: 59459ed0536bf7147826875a3c0caf7e, type: 3}
