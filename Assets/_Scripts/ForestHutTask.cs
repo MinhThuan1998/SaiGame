@@ -11,10 +11,11 @@ public class ForestHutTask : BuildingTask
     [SerializeField] protected float treeDistance = 7f;
     [SerializeField] protected List<GameObject> trees;
     [SerializeField] protected int treeMax = 1;
-    [SerializeField] protected float workingSpeed = 10;
-    [SerializeField] protected float distanceWoodcutter = 3f;
+    [SerializeField] protected float workingSpeed = 2;
     [SerializeField] protected GameObject waterPond;
     [SerializeField] protected bool relaxTime = false;
+
+    private float timetoRelax = 15;
 
 
     protected override void LoadComponents()
@@ -110,21 +111,31 @@ public class ForestHutTask : BuildingTask
     }
     protected virtual void FindNearestTree(WorkerCtrl workerCtrl)
     {
-        Debug.Log("Find Tree");
-
+        
         GameObject tree;
+        GameObject closetTree;
+        float distancetoClosetTree = Mathf.Infinity;
         Transform target = workerCtrl.workerMovement.GetTarget();
         for (int i = 0; i < this.trees.Count; i++)
         {
             tree = this.trees[i];
-            target = tree.transform;
-            workerCtrl.workerTasks.taskTarget = target;
-            workerCtrl.workerMovement.SetTarget(target);
+            
+            float distancetoTree = (workerCtrl.workerMovement.transform.position - tree.transform.position).sqrMagnitude;
+            Debug.Log("DistancetoTree:" + distancetoTree);
+            if (distancetoTree < distancetoClosetTree)
+            {
+                distancetoClosetTree = distancetoTree;
+                closetTree = tree;
+                workerCtrl.workerTasks.taskTarget = closetTree.transform;
+                workerCtrl.workerMovement.SetTarget(closetTree.transform);
+
+            }
+
         }
     }
     IEnumerator AfterRelaxing()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(this.timetoRelax);
         relaxTime = true;
     }
     protected virtual void Relax(WorkerCtrl workerCtrl)
