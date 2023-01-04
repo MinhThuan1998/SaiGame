@@ -121,16 +121,24 @@ public class ForestHutTask : BuildingTask
             tree = this.trees[i];
             
             float distancetoTree = (workerCtrl.workerMovement.transform.position - tree.transform.position).sqrMagnitude;
-            Debug.Log("DistancetoTree:" + distancetoTree);
+            //Debug.Log("DistancetoTree:" + distancetoTree);
             if (distancetoTree < distancetoClosetTree)
             {
+
                 distancetoClosetTree = distancetoTree;
                 closetTree = tree;
                 workerCtrl.workerTasks.taskTarget = closetTree.transform;
                 workerCtrl.workerMovement.SetTarget(closetTree.transform);
+               
+                if(distancetoClosetTree == 0)
+                {
+                    Destroy(closetTree);
+                   
+                   
 
+                }
             }
-
+            
         }
     }
     IEnumerator AfterRelaxing()
