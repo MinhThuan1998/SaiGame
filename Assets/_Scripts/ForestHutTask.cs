@@ -13,6 +13,7 @@ public class ForestHutTask : BuildingTask
     [SerializeField] protected int treeMax = 1;
     [SerializeField] protected float workingSpeed = 2;
     [SerializeField] protected GameObject waterPond;
+    [SerializeField] protected GameObject house3;
     [SerializeField] protected bool relaxTime = false;
 
     private float timetoRelax = 15;
@@ -115,11 +116,10 @@ public class ForestHutTask : BuildingTask
         GameObject tree;
         GameObject closetTree;
         float distancetoClosetTree = Mathf.Infinity;
-        Transform target = workerCtrl.workerMovement.GetTarget();
+       
         for (int i = 0; i < this.trees.Count; i++)
         {
             tree = this.trees[i];
-            
             float distancetoTree = (workerCtrl.workerMovement.transform.position - tree.transform.position).sqrMagnitude;
             //Debug.Log("DistancetoTree:" + distancetoTree);
             if (distancetoTree < distancetoClosetTree)
@@ -133,9 +133,12 @@ public class ForestHutTask : BuildingTask
                 if(distancetoClosetTree == 0)
                 {
                     Destroy(closetTree);
-                   
-                   
-
+                    Transform target = workerCtrl.workerMovement.GetTarget();
+                    target = tree.transform;
+                    workerCtrl.workerTasks.taskTarget = tree.transform;
+                    workerCtrl.workerMovement.SetTarget(tree.transform);
+                    Debug.Log("Target after chopping:" + target);
+             
                 }
             }
             

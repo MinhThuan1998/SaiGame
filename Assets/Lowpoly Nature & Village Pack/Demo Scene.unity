@@ -855,6 +855,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0fa45676ed50944a0e6476cf702a53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &908305705 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100014, guid: 5fe16056a96fc1e489264ffd29ee00ab, type: 3}
+  m_PrefabInstance: {fileID: 1160470289}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &918785782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1873,8 +1878,8 @@ MonoBehaviour:
   trees: []
   treeMax: 1
   workingSpeed: 1000
-  distanceWoodcutter: 10
   waterPond: {fileID: 2082803236}
+  house3: {fileID: 908305705}
   relaxTime: 0
 --- !u!114 &1937973328 stripped
 MonoBehaviour:
